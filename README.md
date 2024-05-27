@@ -12,8 +12,8 @@ Este projeto é uma aplicação de monitoramento que utiliza MQTT para receber d
 1. **Clone o Repositório**
 
    ```sh
-   git clone https://github.com/seu-usuario/mqtt-twilio-app.git
-   cd mqtt-twilio-app
+   git clone https://github.com/seu-usuario/alerta.git
+   cd alerta
 
 2. **Instale as Dependências**
     ```sh
