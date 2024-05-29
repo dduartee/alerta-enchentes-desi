@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const axios = require('axios');
 
 const app = express();
 const port = 3000;
@@ -18,15 +19,13 @@ app.get('/sendSMS', (req, res) => {
 
     //implemente a lógica aqui
 
-    
 });
 
 //rota para atualizar os gráficos
-app.get('/data', (req, res) => {
+app.get('/data', async(req, res) => {
 
-    //implemente a lógica aqui
+    //implemente sua solução aqui
 
-    
 });
 
 app.listen(port, () => {
