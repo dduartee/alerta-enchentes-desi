@@ -27,9 +27,9 @@ const numerosAutorizados = [ // numeros verificados no twilio
     "+5549991868829"
 ]
 const riosMonitorados = [
-    { nome: "Xanxerê", channelID: 2572787, apiKey: process.env.API_KEY },
+    { nome: "Xanxerê", channelID: 2572787},
 ]
-function getRioFeed(channelID, apiKey, results = 50) {
+function getRioFeed(channelID, results = 50) {
     return axios.get(`https://api.thingspeak.com/channels/${channelID}/feeds.json`, {
         params: {
             results,
@@ -46,8 +46,8 @@ app.get('/sendSMS', async (req, res) => { // sendSMS?nomeRio=Xanxerê
         return res.status(400).send({ success: false, message: "Rio não monitorado" })
     }
     const channelID = riosMonitorados[indiceRio].channelID;
-    
-    const response = await getRioFeed(channelID, process.env.API_KEY, 1);
+
+    const response = await getRioFeed(channelID, 1);
     const altura = response.data.feeds[0].field1;
     const dataAtual = new Date().toLocaleString();
     const trialNumber = "+17745152897" // numero de teste do twilio
@@ -72,7 +72,7 @@ app.get('/data', async (req, res) => { // /data?nomeRio=Xanxerê
     }
     const channelID = riosMonitorados[indiceRio].channelID;
 
-    const response = await getRioFeed(channelID, process.env.API_KEY);
+    const response = await getRioFeed(channelID);
     const data = response.data.feeds.map(feed => {
         return {
             created_at: feed.created_at,
