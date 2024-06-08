@@ -46,12 +46,14 @@ app.get('/sendSMS', async (req, res) => { // sendSMS?nomeRio=Xanxerê
         return res.status(400).send({ success: false, message: "Rio não monitorado" })
     }
     const channelID = riosMonitorados[indiceRio].channelID;
-
     const response = await getRioFeed(channelID, 1);
     const altura = response.data.feeds[0].field1;
+    if(altura < 250) {
+        return res.status(200).send({ success: false, message: "Rio não está na altura de alerta!" });
+    }
     const dataAtual = new Date().toLocaleString();
     const trialNumber = "+17745152897" // numero de teste do twilio
-    const body = `Alerta!! A altura da água do rio ${req.query.nomeRio} está acima do normal. Altura: ${altura}m. Data:${dataAtual}`
+    const body = `Alerta!! A altura da água do rio ${req.query.nomeRio} está acima do normal. Altura: ${altura}cm. Data:${dataAtual}`
     const messageSids = await Promise.all(numerosAutorizados.map(async numero => {
         const message = await client.messages.create({
             body,
@@ -67,7 +69,6 @@ app.get('/sendSMS', async (req, res) => { // sendSMS?nomeRio=Xanxerê
 app.get('/data', async (req, res) => { // /data?nomeRio=Xanxerê
     const indiceRio = indiceRioMonitorado(req.query.nomeRio)
     if (indiceRio === -1) {
-        console.log(req.query.nomeRio)
         return res.status(400).send({ success: false, message: "Rio não monitorado" })
     }
     const channelID = riosMonitorados[indiceRio].channelID;

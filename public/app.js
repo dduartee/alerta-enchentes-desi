@@ -79,11 +79,16 @@ function sendSMS() {
     document.getElementById('status').innerText = 'Enviando SMS...';
     fetch(url).then(response => {
         if (response.ok) {
-            alert('SMS enviado com sucesso!');
-            document.getElementById('status').innerText = 'SMS enviado com sucesso!'
+            response.json().then(data => {
+                if(data.success == true) {
+                    document.getElementById('status').innerText = 'SMS enviado com sucesso';
+                } else {
+                    document.getElementById('status').innerText = data.message;
+                }
+            });
         } else {
-            alert('Erro ao enviar SMS.');
-            document.getElementById('status').innerText = 'Erro ao enviar SMS.'
+            alert('Erro ao enviar SMS');
+            document.getElementById('status').innerText = 'Erro ao enviar SMS';
         }
     });
 
