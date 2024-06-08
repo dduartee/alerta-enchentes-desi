@@ -1,0 +1,54 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.wrapper {
+    margin: 0 auto;
+    width: 50%; /* Ajusta a largura para 50% */
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center; /* Centraliza o conteúdo */
+}
+
+#messages, #dash {
+    margin-top: 12px;
+    padding: 12px;
+    background-color: #e9ecef;
+    border: none;
+    border-radius: 8px;
+    max-height: 250px;
+    overflow: auto;
+}
+
+#dash {
+    display: flex;
+    justify-content: center; /* Centraliza o conteúdo */
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+#distanciaChart, #humChart {
+    width: 100%; /* Ajusta a largura para 100% do wrapper */
+    height: 280px;
+    margin: 20px 0;
+}
+
+.temp {
+    margin: 10px;
+    height: 100px;
+    width: 100px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 50%;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
